@@ -1,0 +1,45 @@
+{
+  "name": "FridgeBuddy || RefriCompa",
+  "short_name": "FridgeBuddy",
+  "icons": [
+    {
+      "src": "/favicons/pwa-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/favicons/pwa-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/favicons/pwa-maskable-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/favicons/pwa-maskable-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "start_url": "/",
+  "id": "/",
+  "display": "standalone",
+  "display_override": ["minimal-ui"],
+  "background_color": "#FFFFFF",
+  "theme_color": "#FFFFFF",
+  "screenshots": [
+    {
+      "src": "/screenshots/temp-mobile-1.png",
+      "sizes": "732x412",
+      "type": "image/png",
+      "form_factor": "narrow", 
+      "label": "Check fridge stock at a glance"
+    },
+  ]
+}
