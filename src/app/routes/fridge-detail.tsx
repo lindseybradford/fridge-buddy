@@ -1,5 +1,12 @@
+import { Head } from "@src/app/seo/head";
+
 export const FridgeDetail = () => {
-  return <div>FridgeDetail</div>;
+  return (
+    <>
+      <Head description="Fridge neighborhood, address, etc" />
+      <div>FridgeDetail</div>
+    </>
+  );
 };
 
 export default FridgeDetail;
