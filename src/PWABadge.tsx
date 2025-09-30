@@ -1,5 +1,3 @@
-import './PWABadge.css'
-
 import { useRegisterSW } from 'virtual:pwa-register/react'
 
 function PWABadge() {
@@ -30,10 +28,11 @@ function PWABadge() {
         setOfflineReady(false)
         setNeedRefresh(false)
     }
-
-    console.log('Notification permission:', Notification.permission);
-    console.log('Service Worker support:', 'serviceWorker' in navigator);
-    console.log('Push support:', 'PushManager' in window);
+    console.log('offlineReady', offlineReady)
+    console.log('needRefresh', needRefresh)
+    // console.log('Notification permission:', Notification.permission);
+    // console.log('Service Worker support:', 'serviceWorker' in navigator);
+    // console.log('Push support:', 'PushManager' in window);
     return (
         <div className="PWABadge" role="alert" aria-labelledby="toast-message">
 
