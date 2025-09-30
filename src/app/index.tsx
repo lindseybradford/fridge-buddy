@@ -1,11 +1,10 @@
 import { AppProvider } from "./provider";
-import { TestError } from "@src/components/TestError";
+import { AppRouter } from "./router";
 
 export const App = () => {
   return (
     <AppProvider>
-      <h1>App</h1>
-      <TestError />
+      <AppRouter />
     </AppProvider>
   );
 };
