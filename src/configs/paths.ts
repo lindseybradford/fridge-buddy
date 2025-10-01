@@ -13,6 +13,10 @@ export const paths = {
     getHref: (redirectTo?: string | null | undefined) =>
       `/login${redirectTo ? `?redirectTo=${encodeURIComponent(redirectTo)}` : ""}`,
   },
+  fridges: {
+    path: "/fridges",
+    getHref: () => "/fridges",
+  },
   fridge: {
     path: "/fridge/:fridgeId",
     getHref: (id: string) => `/fridge/${id}`,

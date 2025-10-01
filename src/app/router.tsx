@@ -3,6 +3,7 @@ import { useMemo } from "react";
 import { createBrowserRouter } from "react-router";
 import { RouterProvider } from "react-router/dom";
 import { FridgeDetail } from "./routes/fridge-detail";
+import { FridgeList } from "./routes/fridge-list";
 
 import { paths } from "@src/configs/paths";
 
@@ -33,6 +34,11 @@ export const createAppRouter = (queryClient: QueryClient) =>
     //   path: paths.login.path,
     //   lazy: () => import('./routes/login').then(convert(queryClient)),
     // },
+    ...[paths.home.path, paths.fridges.path].map(path => ({
+      path,
+      element: <FridgeList />,
+      lazy: () => import("./routes/fridge-list").then(convert(queryClient)),
+    })),
     {
       path: paths.fridge.path,
       element: <FridgeDetail />, // TODO: element: <ProtectedRoute><FridgeDetail /></ProtectedRoute>,
