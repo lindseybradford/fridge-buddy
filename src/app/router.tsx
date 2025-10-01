@@ -2,10 +2,13 @@ import { QueryClient, useQueryClient } from "@tanstack/react-query";
 import { useMemo } from "react";
 import { createBrowserRouter } from "react-router";
 import { RouterProvider } from "react-router/dom";
-import { FridgeDetail } from "./routes/fridge-detail";
-import { FridgeList } from "./routes/fridge-list";
+import { MainErrorFallback } from "./errors/main";
 
 import { paths } from "@src/configs/paths";
+
+import {
+  default as AppRoot
+} from './routes/root';
 
 interface LazyRouteModule {
   clientLoader?: (queryClient: QueryClient) => any;
@@ -26,27 +29,27 @@ const convert = (queryClient: QueryClient) => (m: LazyRouteModule) => {
 
 export const createAppRouter = (queryClient: QueryClient) =>
   createBrowserRouter([
-    // {
-    //   path: paths.register.path,
-    //   lazy: () => import('./routes/register').then(convert(queryClient)),
-    // },
-    // {
-    //   path: paths.login.path,
-    //   lazy: () => import('./routes/login').then(convert(queryClient)),
-    // },
-    ...[paths.home.path, paths.fridges.path].map(path => ({
-      path,
-      element: <FridgeList />,
-      lazy: () => import("./routes/fridge-list").then(convert(queryClient)),
-    })),
     {
-      path: paths.fridge.path,
-      element: <FridgeDetail />, // TODO: element: <ProtectedRoute><FridgeDetail /></ProtectedRoute>,
-      lazy: () => import("./routes/fridge-detail").then(convert(queryClient)),
-    },
-    {
-      path: "*",
-      lazy: () => import("./routes/not-found").then(convert(queryClient)),
+      path: paths.root.path,
+      element: (<AppRoot />), // TODO: add protected route layout? => // element: (<ProtectedRoute><AppRoot /></ProtectedRoute>),
+      ErrorBoundary: MainErrorFallback,
+      hydrateFallbackElement: <>Loading</>,
+      children: [
+        ...[paths.root.path, paths.fridges.path].map(path => ({
+          path,
+          lazy: () => import("./routes/fridge-list").then(convert(queryClient)),
+        })),
+        {
+          path: paths.fridge.path,
+          lazy: () => import("./routes/fridge-detail").then(convert(queryClient)),
+        },
+        // TODO: add register and login paths?
+        {
+          path: "*",
+          lazy: () => import("./routes/not-found").then(convert(queryClient)),
+        },
+
+      ]
     },
   ]);
 

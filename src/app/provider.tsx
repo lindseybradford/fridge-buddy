@@ -17,13 +17,7 @@ export const AppProvider = ({ children }: AppProviderProps) => {
       }),
   );
   return (
-    <Suspense
-      fallback={
-        <div className="flex h-screen w-screen items-center justify-center">
-          SPINNER
-        </div>
-      }
-    >
+    <Suspense>
       <ErrorBoundary FallbackComponent={MainErrorFallback}>
         <HelmetProvider>
           <QueryClientProvider client={queryClient}>
